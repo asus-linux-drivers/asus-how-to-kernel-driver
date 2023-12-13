@@ -18,21 +18,39 @@ $ cp -r linux-6.2-origin linux-6.2-patch
 
 - Change code, for example:
 
- - `./include/linux/platform_data/x86/asus-wmi.h`
+ - `sudo gedit /include/linux/platform_data/x86/asus-wmi.h`
 ```
  #define ASUS_WMI_DEVID_CAMERA_LED 0x00060079
 ```
 
-- `./drivers/platform/x86/asus-wmi.c`
+ - `sudo gedit  /drivers/platform/x86/asus-wmi.c`
 
 ```
 # duplicated code for new camera led as has been already added for mic-mute led
 ```
 
+- Include headers standardly from include/ if necessary for build because headers inside include/ are private ones so when building part of kernel like DKMS does and using them have to be added manually in .h and .c file:
+
+```
+$ sudo gedit /drivers/platform/x86/include/asus-wmi.h
+```
+
+and content
+
+```
+/* SPDX-License-Identifier: GPL-2.0 */
+#ifndef __PLATFORM_DATA_X86_ASUS_WMI_H_EXT
+#define __PLATFORM_DATA_X86_ASUS_WMI_H_EXT
+
+#define ASUS_WMI_DEVID_CAMERA_LED		0x00060079
+
+#endif	/* __PLATFORM_DATA_X86_ASUS_WMI_H_EXT */
+```
+
 - Create the patch
 
 ```
-$ diff -urpN linux-6.2-origin linux-6.2-patch > 99-tutorial-patch.patch
+$ diff -urpN linux-6.2-origin linux-6.2-patch > ../how-to-apply-patch/patch-6.2.patch
 ```
 
 ```
