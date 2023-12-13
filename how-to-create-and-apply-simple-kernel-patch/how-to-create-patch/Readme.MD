@@ -29,13 +29,13 @@ $ cp -r linux-6.2-origin linux-6.2-patch
 # duplicated code for new camera led as has been already added for mic-mute led
 ```
 
-- Include headers standardly from include/ if necessary for build because headers inside include/ are private ones so when building part of kernel like DKMS does and using them have to be added manually in .h and .c file:
+- Constants and code in generally standardly defined in `include/` directory that is necessary for DKMS build include manually from own header file because headers inside `include/` are private ones and are applyied only when is build entire kernel so when is build part of kernel like DKMS will do for aplying this patch is necessary do it manually in own `.h` and `.c` file:
 
 ```
 $ sudo gedit /drivers/platform/x86/include/asus-wmi.h
 ```
 
-and content
+and content in `.h`
 
 ```
 /* SPDX-License-Identifier: GPL-2.0 */
@@ -45,6 +45,12 @@ and content
 #define ASUS_WMI_DEVID_CAMERA_LED		0x00060079
 
 #endif	/* __PLATFORM_DATA_X86_ASUS_WMI_H_EXT */
+```
+
+and include in `.c`
+
+```
+#include "include/asus-wmi.h"
 ```
 
 - Create the patch
