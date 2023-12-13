@@ -29,7 +29,7 @@ $ cp -r linux-6.2-origin linux-6.2-patch
 # duplicated code for new camera led as has been already added for mic-mute led
 ```
 
-- Constants and code in generally standardly defined in `include/` directory that is necessary for DKMS build include manually from own header file because headers inside `include/` are private ones and are applyied only when is build entire kernel so when is build part of kernel like DKMS will do for aplying this patch is necessary do it manually in own `.h` and `.c` file:
+- Constants and code in generally standardly defined in kernel `include/` directory that is necessary for build this patch include manually from own header file because headers inside kernel `include/` directory are private ones and are applyied only when is build entire kernel so when is build part of kernel like DKMS will do for aplying this patch is necessary do it manually in own `.h` and `.c` file:
 
 ```
 $ sudo gedit /drivers/platform/x86/include/asus-wmi.h
