@@ -47,10 +47,10 @@ $ sudo mkdir /usr/src/asus-wmi-1.0
 $ sudo cp -r . /usr/src/asus-wmi-1.0
 ```
 
-- Build DKMS module
+- Build and install DKMS module
 
 ```
 $ sudo dkms remove -m asus-wmi -v 1.0 --all
-$ 
-
+$ sudo dkms build -m asus-wmi -v 1.0
+$ sudo dkms install -m asus-wmi -v 1.0
 ```
