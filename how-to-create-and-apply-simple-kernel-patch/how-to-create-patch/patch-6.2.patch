@@ -1,14 +1,14 @@
 diff -urpN linux-6.2-origin/drivers/platform/x86/asus-wmi.c linux-6.2-patch/drivers/platform/x86/asus-wmi.c
 --- linux-6.2-origin/drivers/platform/x86/asus-wmi.c	2023-02-19 23:24:22.000000000 +0100
-+++ linux-6.2-patch/drivers/platform/x86/asus-wmi.c	2023-12-13 17:17:26.906766314 +0100
-@@ -29,6 +29,7 @@
- #include <linux/pci.h>
- #include <linux/pci_hotplug.h>
- #include <linux/platform_data/x86/asus-wmi.h>
++++ linux-6.2-patch/drivers/platform/x86/asus-wmi.c	2023-12-13 15:56:44.738498704 +0100
+@@ -42,6 +42,7 @@
+ #include <acpi/video.h>
+ 
+ #include "asus-wmi.h"
 +#include "include/asus-wmi.h"
- #include <linux/platform_device.h>
- #include <linux/platform_profile.h>
- #include <linux/power_supply.h>
+ 
+ MODULE_AUTHOR("Corentin Chary <corentin.chary@gmail.com>");
+ MODULE_AUTHOR("Yong Wang <yong.y.wang@intel.com>");
 @@ -211,6 +212,7 @@ struct asus_wmi {
  	struct led_classdev lightbar_led;
  	int lightbar_led_wk;
@@ -61,20 +61,14 @@ diff -urpN linux-6.2-origin/drivers/platform/x86/asus-wmi.c linux-6.2-patch/driv
  
  error:
  	if (rv)
-diff -urpN linux-6.2-origin/drivers/platform/x86/include/asus-wmi.h linux-6.2-patch/drivers/platform/x86/include/asus-wmi.h
---- linux-6.2-origin/drivers/platform/x86/include/asus-wmi.h	1970-01-01 01:00:00.000000000 +0100
-+++ linux-6.2-patch/drivers/platform/x86/include/asus-wmi.h	2023-12-13 17:08:41.195162476 +0100
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef __PLATFORM_DATA_X86_ASUS_WMI_H_EXT
-+
-+#define __PLATFORM_DATA_X86_ASUS_WMI_H_EXT
-+
-+
-+
+diff -urpN linux-6.2-origin/include/linux/platform_data/x86/asus-wmi.h linux-6.2-patch/include/linux/platform_data/x86/asus-wmi.h
+--- linux-6.2-origin/include/linux/platform_data/x86/asus-wmi.h	2023-02-19 23:24:22.000000000 +0100
++++ linux-6.2-patch/include/linux/platform_data/x86/asus-wmi.h	2023-12-13 15:46:08.470801414 +0100
+@@ -50,6 +50,7 @@
+ #define ASUS_WMI_DEVID_LED5		0x00020015
+ #define ASUS_WMI_DEVID_LED6		0x00020016
+ #define ASUS_WMI_DEVID_MICMUTE_LED		0x00040017
 +#define ASUS_WMI_DEVID_CAMERA_LED		0x00060079
-+
-+
-+
-+#endif	/* __PLATFORM_DATA_X86_ASUS_WMI_H_EXT */
+ 
+ /* Backlight and Brightness */
+ #define ASUS_WMI_DEVID_ALS_ENABLE	0x00050001 /* Ambient Light Sensor */
