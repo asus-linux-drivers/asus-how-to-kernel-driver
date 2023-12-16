@@ -11,6 +11,7 @@ $ sudo apt install dkms
 ```
 $ uname -r
 6.2.0-37-generic
+```
 
 - Install current kernel version header files
 
